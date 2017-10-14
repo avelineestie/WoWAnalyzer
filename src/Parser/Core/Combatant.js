@@ -1,4 +1,5 @@
 import SPECS from 'common/SPECS';
+import ITEM_QUALITIES from 'common/ITEM_QUALITIES';
 
 import Entity from './Entity';
 
@@ -287,6 +288,10 @@ class Combatant extends Entity {
   }
   getItem(itemId) {
     return Object.keys(this._gearItemsBySlotId).map(key => this._gearItemsBySlotId[key]).find(item => item.id === itemId);
+  }
+
+  get legendaries() {
+    return Object.values(this._gearItemsBySlotId).filter(item => item.quality === ITEM_QUALITIES.LEGENDARY);
   }
   // endregion
 }
